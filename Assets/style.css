@@ -177,6 +177,7 @@ header .menu {
     height: 220px;
     filter: brightness(.5);
     transition: .5s;
+    flex-shrink: 0;
 }
 
 .thumbnail .item img {
@@ -193,4 +194,18 @@ header .menu {
 .thumbnail .item .content {
     position: absolute;
     inset: auto 10px 10px 10px;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 678px) {
+    .thumbnail{
+        justify-content: start; /*move them slider to the left on mobile devices */
+    }
+    .slider .list .item .content h2 {
+        font-size: 60px;
+    }
+    .arrows {
+        top: 10%;
+    }
 }
