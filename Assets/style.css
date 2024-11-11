@@ -11,6 +11,8 @@ svg {
     width: 25px;
 }
 
+
+/* Header Styling */
 header {
     width: 1200px;
     max-width: 90%;
@@ -36,4 +38,90 @@ header .menu {
     justify-content: center;
     gap: 20px;
     font-weight: 500;
+}
+
+/* Slider Styling */
+.slider {
+    height: 100vh;
+    margin-top: -50px; /* Header has height of 50px */ 
+    position: relative;
+}
+
+.slider .list .item {
+    position: absolute;
+    inset: 0 0 0 0; /* basically inline start */
+    overflow: hidden;
+    opacity: 0; /* Initial inactive item opacity 0 so not visible */ 
+    transition: .5s;
+}
+
+.slider .list .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.slider .list .item::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-image: linear-gradient(
+        to top, #000 40%, transparent
+    );
+}
+
+.slider .list .item .content {
+    position: absolute;
+    left: 10%;
+    top: 20%;
+    width: 500px;
+    max-width: 80%;
+    z-index: 1;
+}
+
+.slider .list .item .content p:nth-child(1){
+    text-transform: uppercase;
+    letter-spacing: 10px;
+}
+
+.slider .list .item .content h2 {
+    font-size: 100px;
+    margin: 0;
+}
+
+/* make sure if item is active we have it as visible */
+.slider .list .item.active {
+    opacity: 1;
+    z-index: 10;
+}
+
+/* animation */
+@keyframes showContent {
+    to{
+        transform: translateY(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+/* set up the children (content) to animate in later */
+.slider .list .item.active p:nth-child(1),
+.slider .list .item.active h2,
+.slider .list .item.active p:nth-child(3){
+    transform: translateY(30px); /* push content 20px below*/
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent .5s .7s ease-in-out 1 forwards;
+}
+
+.slider .list .item.active h2 {
+    animation-delay: 1s; /* Have H2 show up later*/
+}
+
+.slider .list .item.active p:nth-child(3) {
+    animation-duration: 1.3s; /* Have P tag take longer to animate so it shows up later*/
 }
