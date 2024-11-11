@@ -23,6 +23,11 @@ prev.onclick = function(){
     showSlider();
 }
 
+
+// automate slide cycle
+let refreshInterval = setInterval(() => {
+    next.click();
+}, 5000)
 // controls slider behavior
 function showSlider(){
     // remove active from previous selection
@@ -35,6 +40,11 @@ function showSlider(){
     items[itemActive].classList.add('active');
     thumbnails[itemActive].classList.add('active');
     setPositionThumbnail();
+     // clear auto time run slider
+     clearInterval(refreshInterval);
+     refreshInterval = setInterval(() => {
+         next.click();
+     }, 5000)
 
 }
 function setPositionThumbnail () {
